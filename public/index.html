@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拼音标注工具 — 一键为中文添加拼音标注 | Pinyin Annotation Tool</title>
+  <meta name="description" content="一键为中文文本添加拼音标注。支持5种拼音风格、繁简转换、批量文件处理。macOS桌面工具，免费使用。" />
+  <meta name="keywords" content="拼音标注,拼音工具,中文学习,pinyin,中文教学,繁简转换,批量处理" />
+  <meta name="author" content="拼音标注工具" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pinyin-tool.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="拼音标注工具 — 一键为中文添加拼音标注" />
+  <meta property="og:description" content="支持5种拼音风格、繁简转换、批量文件处理的macOS桌面工具。" />
+  <meta property="og:locale" content="zh_CN" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="拼音标注工具 — Pinyin Annotation Tool" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "拼音标注工具",
+    "description": "一键为中文文本添加拼音标注，支持5种风格、繁简转换、批量文件处理",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "macOS",
+    "offers": [
+      { "@type": "Offer", "price": "0", "priceCurrency": "CNY", "description": "免费版" },
+      { "@type": "Offer", "price": "49", "priceCurrency": "CNY", "description": "教师版/年" }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif; line-height: 1.6; color: #1a1a2e; background: #f8f9fa; }
+    .container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+    header { text-align: center; padding: 4rem 0 2rem; }
+    header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #16213e; }
+    header p { font-size: 1.2rem; color: #555; }
+    .badge { display: inline-block; padding: 0.25rem 0.75rem; background: #4F46E5; color: white; border-radius: 9999px; font-size: 0.875rem; margin-bottom: 1rem; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .feature { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .feature h3 { margin-bottom: 0.5rem; }
+    .pricing { background: white; padding: 2rem; border-radius: 8px; margin: 2rem 0; }
+    .pricing h2 { text-align: center; margin-bottom: 1rem; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .plan { border: 2px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; text-align: center; }
+    .plan.popular { border-color: #4F46E5; }
+    .plan h3 { color: #4F46E5; margin-bottom: 0.5rem; }
+    .plan .price { font-size: 2rem; font-weight: 700; }
+    footer { text-align: center; padding: 2rem 0; color: #888; }
+    code { background: #f1f5f9; padding: 0.125rem 0.5rem; border-radius: 4px; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">开源 · 免费</span>
+      <h1>拼音标注工具</h1>
+      <p>一键为中文添加拼音标注 — 专为中文学习者和教师设计</p>
+    </header>
+
+    <div class="features">
+      <div class="feature">
+        <h3>🎯 5种拼音风格</h3>
+        <p>声调标记、数字声调、无声调、首字母等，满足不同学习阶段需求</p>
+      </div>
+      <div class="feature">
+        <h3>🔄 繁简转换</h3>
+        <p>内置常用繁体-简体映射，支持繁体中文用户无缝切换</p>
+      </div>
+      <div class="feature">
+        <h3>📁 批量文件处理</h3>
+        <p>一次处理多个文本文件，教师备课效率提升10倍</p>
+      </div>
+      <div class="feature">
+        <h3>⌨️ macOS系统集成</h3>
+        <p>系统级快捷键支持，选中文本即可快速标注，支持Automator服务</p>
+      </div>
+    </div>
+
+    <div class="pricing">
+      <h2>定价计划</h2>
+      <div class="pricing-grid">
+        <div class="plan">
+          <h3>免费版</h3>
+          <div class="price">免费</div>
+          <ul style="text-align: left; margin-top: 1rem; list-style: none;">
+            <li>✅ 单文本拼音标注</li>
+            <li>✅ 5种拼音风格</li>
+            <li>✅ 基础繁简转换</li>
+            <li>❌ 批量文件处理</li>
+            <li>❌ 自定义词典</li>
+          </ul>
+        </div>
+        <div class="plan popular">
+          <h3>教师版</h3>
+          <div class="price">¥49<span style="font-size: 1rem; font-weight: normal;">/年</span></div>
+          <ul style="text-align: left; margin-top: 1rem; list-style: none;">
+            <li>✅ 全部免费功能</li>
+            <li>✅ 批量文件处理</li>
+            <li>✅ 自定义词典</li>
+            <li>✅ 导出PDF</li>
+            <li>✅ 优先支持</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 2rem 0;">
+      <h2>快速开始</h2>
+      <code>git clone https://github.com/shengdabai/pinyin-tool.git</code>
+      <br><br>
+      <code>cd pinyin-tool && pip install -r requirements.txt</code>
+      <br><br>
+      <code>python pinyin_tool.py</code>
+    </div>
+
+    <footer>
+      <p>开源项目 · MIT License · <a href="https://github.com/shengdabai/pinyin-tool">GitHub</a></p>
+    </footer>
+  </div>
+</body>
+</html>
