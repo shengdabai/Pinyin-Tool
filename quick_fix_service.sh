@@ -141,7 +141,12 @@ on run {input, parameters}
         display notification "转换失败: " & errorMessage with title "拼音标注服务" subtitle "错误"
         
         -- 记录错误到系统日志
-        do shell script "echo '拼音标注服务错误: " & errorMessage & "' >> ~/Library/Logs/pinyin_service.log"
+        set logMessage to "拼音标注服务错误: " & errorMessage
+        try
+            do shell script "printf '%s\\n' " & quoted form of logMessage & " >> ~/Library/Logs/pinyin_service.log"
+        on error
+            -- Logging must not prevent returning the original text.
+        end try
         
         -- 返回原文，不做修改
         return inputText

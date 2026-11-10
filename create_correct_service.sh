@@ -111,10 +111,12 @@ create_automator_service() {
     print_title "创建Automator服务"
     
     local service_name="拼音标注服务-正确版本"
-    local temp_script="/tmp/pinyin_service.scpt"
+    local temp_dir
+    temp_dir=$(mktemp -d "${TMPDIR:-/tmp}/pinyin_service.XXXXXX") || return 1
+    local temp_script="$temp_dir/pinyin_service.scpt"
     
     # 创建AppleScript文件
-    create_applescript > "$temp_script"
+    (umask 077; create_applescript > "$temp_script") || return 1
     
     print_message $BLUE "创建的AppleScript代码已保存到: $temp_script"
     print_message $YELLOW "请按照以下步骤手动创建Automator服务:"
