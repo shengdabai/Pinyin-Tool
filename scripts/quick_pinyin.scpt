@@ -18,10 +18,9 @@ end if
 
 -- 调用Python脚本进行拼音转换
 try
-    set toolPath to (path to home folder as string) & "Programming:拼音标注工具:"
-    set pythonScript to "import sys; sys.path.append('" & POSIX path of toolPath & "'); from pypinyin import lazy_pinyin, Style; print(' '.join(lazy_pinyin('" & selectedText & "', style=Style.TONE)))"
+    set pythonScript to "import sys; from pypinyin import lazy_pinyin, Style; print(' '.join(lazy_pinyin(sys.argv[1], style=Style.TONE)))"
     
-    set pinyinResult to do shell script "python3 -c \"" & pythonScript & "\""
+    set pinyinResult to do shell script "python3 -c " & quoted form of pythonScript & " " & quoted form of selectedText
     
     -- 将拼音结果复制到剪贴板
     set the clipboard to pinyinResult

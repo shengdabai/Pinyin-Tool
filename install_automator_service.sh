@@ -278,13 +278,13 @@ on run {input, parameters}
     
     try
         -- 构建 Python 命令
-        set pythonCommand to "python3 -c \"from pypinyin import lazy_pinyin, Style; import sys; text = sys.argv[1]; result = ' '.join(lazy_pinyin(text, style=" & pinyinStyle & ")); print(result)\" " & quoted form of inputText
+        set pythonCommand to "python3 -c \"from pypinyin import lazy_pinyin, Style; import sys; text = sys.argv[1]; result = ' '.join(lazy_pinyin(text, style=" &amp; pinyinStyle &amp; ")); print(result)\" " &amp; quoted form of inputText
         
         set pinyinResult to do shell script pythonCommand
         
         -- 根据用户选择返回结果
         if selectedStyle contains "保留原文" then
-            set finalResult to inputText & " (" & pinyinResult & ")"
+            set finalResult to inputText &amp; " (" &amp; pinyinResult &amp; ")"
         else
             set finalResult to pinyinResult
         end if
@@ -294,7 +294,7 @@ on run {input, parameters}
         return finalResult
         
     on error errorMessage
-        display notification "转换失败: " & errorMessage with title "拼音标注服务" subtitle "错误"
+        display notification "转换失败: " &amp; errorMessage with title "拼音标注服务" subtitle "错误"
         return inputText
     end try
 end run</string>
@@ -386,7 +386,9 @@ setup_permissions() {
     print_info "配置系统权限..."
     
     # 创建权限设置AppleScript
-    cat > "/tmp/setup_permissions.scpt" << 'EOF'
+    local temp_script
+    temp_script=$(mktemp "${TMPDIR:-/tmp}/pinyin_permissions.XXXXXX") || return 1
+    cat > "$temp_script" << 'EOF'
 tell application "System Preferences"
     activate
     set current pane to pane "com.apple.preference.security"
@@ -406,8 +408,8 @@ display dialog "请在系统偏好设置中：\n\n1. 点击左下角的锁图标
 EOF
     
     # 运行权限设置脚本
-    osascript "/tmp/setup_permissions.scpt" 2>/dev/null || true
-    rm -f "/tmp/setup_permissions.scpt"
+    osascript "$temp_script" 2>/dev/null || true
+    rm -f "$temp_script"
     
     print_success "权限配置完成"
 }
@@ -417,7 +419,9 @@ setup_shortcut_key() {
     print_info "配置快捷键..."
     
     # 创建快捷键设置AppleScript
-    cat > "/tmp/setup_shortcut.scpt" << 'EOF'
+    local temp_script
+    temp_script=$(mktemp "${TMPDIR:-/tmp}/pinyin_shortcut.XXXXXX") || return 1
+    cat > "$temp_script" << 'EOF'
 tell application "System Preferences"
     activate
     set current pane to pane "com.apple.preference.keyboard"
@@ -448,8 +452,8 @@ display dialog "请在系统偏好设置中：\n\n1. 在左侧选择'服务'\n2.
 EOF
     
     # 运行快捷键设置脚本
-    osascript "/tmp/setup_shortcut.scpt" 2>/dev/null || true
-    rm -f "/tmp/setup_shortcut.scpt"
+    osascript "$temp_script" 2>/dev/null || true
+    rm -f "$temp_script"
     
     print_success "快捷键配置完成"
 }
@@ -459,7 +463,9 @@ test_service() {
     print_info "测试服务功能..."
     
     # 创建测试脚本
-    cat > "/tmp/test_pinyin_service.scpt" << 'EOF'
+    local temp_script
+    temp_script=$(mktemp "${TMPDIR:-/tmp}/pinyin_test.XXXXXX") || return 1
+    cat > "$temp_script" << 'EOF'
 -- 测试拼音标注服务
 set testText to "测试中文拼音转换"
 
@@ -476,13 +482,13 @@ end try
 EOF
     
     # 运行测试
-    if osascript "/tmp/test_pinyin_service.scpt"; then
+    if osascript "$temp_script"; then
         print_success "服务测试通过"
     else
         print_error "服务测试失败"
     fi
     
-    rm -f "/tmp/test_pinyin_service.scpt"
+    rm -f "$temp_script"
 }
 
 # 显示安装完成信息

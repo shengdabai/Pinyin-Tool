@@ -23,7 +23,7 @@ set projectPath to POSIX path of (path to home folder) & "Desktop/项目开发/0
 
 -- 运行拼音转换工具
 try
-    set pythonCommand to "python3 '" & projectPath & "/pinyin_tool.py'"
+    set pythonCommand to "python3 " & quoted form of (projectPath & "/pinyin_tool.py")
 
     -- 在后台运行Python脚本
     do shell script pythonCommand & " &"
